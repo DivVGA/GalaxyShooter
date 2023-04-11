@@ -402,6 +402,7 @@ GameObject:
   - component: {fileID: 933793948}
   - component: {fileID: 933793947}
   - component: {fileID: 933793950}
+  - component: {fileID: 933793951}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -501,4 +502,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 163a51cbff7231f4a9a8a2136c2f25a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserPrefab: {fileID: 3539184055266037738, guid: 58fbe06a02dc2e84fa4aef4280f2781c, type: 3}
+  _laserPrefab: {fileID: 3539184055266037738, guid: 58fbe06a02dc2e84fa4aef4280f2781c, type: 3}
+--- !u!114 &933793951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933793946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 041d37ddbf7252547a77c8257737dc90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tripleShooting: 0
+  tripleShootingEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 933793950}
+        m_TargetAssemblyTypeName: PlayerShooting, Assembly-CSharp
+        m_MethodName: TripleShooting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  normalShootingEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 933793950}
+        m_TargetAssemblyTypeName: PlayerShooting, Assembly-CSharp
+        m_MethodName: NormalShooting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
