@@ -36,7 +36,7 @@ public class PowerUp : MonoBehaviour
         }
     }
 
-    public int GetType(){
+    public new int GetType(){
         return this.type;
     }
 }

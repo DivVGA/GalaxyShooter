@@ -51,8 +51,8 @@ public class PlayerPowersUp : MonoBehaviour
 
 
     private void counterPowerUps(){
-        Debug.Log(Time.time);
         if (Time.time > this._timerTS){
+            this._tripleShooting=false;
             this._tripleShooting=false;
         }
         if (Time.time > this._timerSp){

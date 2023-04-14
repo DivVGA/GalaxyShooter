@@ -123,6 +123,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &201958987 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 566237549938561908, guid: 0cb2d896de651be47912ab1f9a282664, type: 3}
+  m_PrefabInstance: {fileID: 566237550006170943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &201958991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201958987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa5923be389fae4780d7983d0b84287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMoving:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 201958992}
+        m_TargetAssemblyTypeName: CharacterMovement, Assembly-CSharp
+        m_MethodName: Movement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &201958992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201958987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b84e8509c26c43e4eabd1edb6f7cfdee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
 --- !u!1 &263921552
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,9 +430,10 @@ GameObject:
   m_Component:
   - component: {fileID: 933793949}
   - component: {fileID: 933793948}
-  - component: {fileID: 933793947}
+  - component: {fileID: 933793954}
   - component: {fileID: 933793950}
   - component: {fileID: 933793951}
+  - component: {fileID: 933793955}
   - component: {fileID: 933793952}
   - component: {fileID: 933793953}
   m_Layer: 0
@@ -397,19 +443,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &933793947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 933793946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3952735d90bd8cd419c4454c01cb0c48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 10
 --- !u!212 &933793948
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -502,6 +535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab914129c05fb740992cdfd6be8742c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tripleShooting: 0
+  _speed: 0
   _powerUpTSTime: 5
   _powerUpSpTime: 10
   _timerTS: 0
@@ -539,8 +574,8 @@ MonoBehaviour:
   normalSpeed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 933793947}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 933793954}
+        m_TargetAssemblyTypeName: CharacterMovement, Assembly-CSharp
         m_MethodName: normalSpeed
         m_Mode: 1
         m_Arguments:
@@ -554,8 +589,8 @@ MonoBehaviour:
   moreSpeed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 933793947}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 933793954}
+        m_TargetAssemblyTypeName: CharacterMovement, Assembly-CSharp
         m_MethodName: changeSpeed
         m_Mode: 1
         m_Arguments:
@@ -595,6 +630,46 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &933793954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933793946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b84e8509c26c43e4eabd1edb6f7cfdee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 10
+--- !u!114 &933793955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933793946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4bb4ec1c68729d4abc3cb7bfa3d2f96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMoving:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 933793954}
+        m_TargetAssemblyTypeName: CharacterMovement, Assembly-CSharp
+        m_MethodName: Movement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1044441804
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tripleShot: {fileID: 5009597455756950845, guid: 95c9f848db7f79a4ba5d2ab1a4a273b5, type: 3}
   _moreSpeed: {fileID: 1209972335638772903, guid: 329f47277128f884da55e5d360cfc35e, type: 3}
+  _shield: {fileID: 2995371521563974445, guid: 87afe37c5ab513c4096c974d01a3aff0, type: 3}
 --- !u!4 &1044441806
 Transform:
   m_ObjectHideFlags: 0
@@ -641,3 +717,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &566237550006170943
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 566237549938561905, guid: 0cb2d896de651be47912ab1f9a282664, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 566237549938561905, guid: 0cb2d896de651be47912ab1f9a282664, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 566237549938561905, guid: 0cb2d896de651be47912ab1f9a282664, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 566237549938561905, guid: 0cb2d896de651be47912ab1f9a282664, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 566237549938561905, guid: 0cb2d896de651be47912ab1f9a282664, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 566237549938561905, guid: 0cb2d896de651be47912ab1f9a282664, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 566237549938561905, guid: 0cb2d896de651be47912ab1f9a282664, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 566237549938561905, guid: 0cb2d896de651be47912ab1f9a282664, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 566237549938561905, guid: 0cb2d896de651be47912ab1f9a282664, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 566237549938561905, guid: 0cb2d896de651be47912ab1f9a282664, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 566237549938561905, guid: 0cb2d896de651be47912ab1f9a282664, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 566237549938561908, guid: 0cb2d896de651be47912ab1f9a282664, type: 3}
+      propertyPath: m_Name
+      value: Enemy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0cb2d896de651be47912ab1f9a282664, type: 3}
