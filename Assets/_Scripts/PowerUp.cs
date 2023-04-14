@@ -7,6 +7,8 @@ public class PowerUp : MonoBehaviour
 {
     [SerializeField]
     private float force;
+    [SerializeField]
+    private int type;
     private Rigidbody _rigibody;
     // Start is called before the first frame update
 
@@ -32,5 +34,9 @@ public class PowerUp : MonoBehaviour
         if (other.tag=="Player"){
             Destroyer();
         }
+    }
+
+    public int GetType(){
+        return this.type;
     }
 }

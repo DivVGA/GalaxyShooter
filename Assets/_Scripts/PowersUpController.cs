@@ -6,8 +6,10 @@ public class PowersUpController : MonoBehaviour
 {
     [SerializeField]
     private GameObject _tripleShot;
+    [SerializeField]
+    private GameObject _moreSpeed;
     private List<GameObject> _powerUpsList = new List<GameObject>();
-    private float _powerUpRate = 15.0f;
+    private float _powerUpRate = 7.0f;
 
     private float _nextPowerUp = 5.0f;
 
@@ -15,6 +17,7 @@ public class PowersUpController : MonoBehaviour
     void Start()
     {
         _powerUpsList.Add(_tripleShot);
+        _powerUpsList.Add(_moreSpeed);
     }
 
     // Update is called once per frame

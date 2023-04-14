@@ -5,59 +5,89 @@ using UnityEngine.Events;
 
 public class PlayerPowersUp : MonoBehaviour
 {
+    // Variable que indica si el disparo triple esta activo
     [SerializeField]
     private bool _tripleShooting = false;
+    // Variable que indica si la velocidad aumentada esta activa
+    [SerializeField]
+    private bool _speed = false;
+    // Es el tiempo que dura el disparo triple
+    [SerializeField]
+    private float _powerUpTSTime = 5.0f;
+    // Es el tiempo que dura la velocidad aumentada
+    [SerializeField]
+    private float _powerUpSpTime = 10.0f;
+    // Es el contador de timepo del disparo triple
+    [SerializeField]
+    private float _timerTS = 0.0f;
+    // Es el contador de tiempo de la velocidad aumentada
+    [SerializeField]
+    private float _timerSp = 0.0f;
+    // Se suscribe lo que pasa en el disparo triple
     public UnityEvent tripleShootingEvent;
+    // Se suscribe lo que pasa en el disparo normal
     public UnityEvent normalShootingEvent;
-    private float _powerUpTSTimer = 5.0f;
-    private float _timer = 0.0f;
-    private float _actualPUTimer;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    // Se suscribe lo que pasa en la velocidad aumentanda
+    public UnityEvent normalSpeed;
+    // Se suscribe lo que pasa en la velocidad normal
+    public UnityEvent moreSpeed;
 
     // Update is called once per frame
     void Update()
     {
-        counterPowerUp();
-        selectShot();
+        selectPowerUps();
+        counterPowerUps();
     }
 
     private void changeTripleShoot(){
         this._tripleShooting = true;
-        this._timer = Time.time + this._powerUpTSTimer;
-        // this._actualPUTimer = this._powerUpTSTimer;
-        // StartCoroutine("playerPowerUpTimer");
+        this._timerTS = Time.time + this._powerUpTSTime;
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.tag=="PowerUps"){
-            if (other.name == "Triple_Shot_PowerUp(Clone)"){
-                changeTripleShoot();
-            }
-        }
+    private void changeSpeed(){
+        this._speed = true;
+        this._timerSp = Time.time + this._powerUpSpTime;
     }
 
-    private void counterPowerUp(){
-        if (Time.time > this._timer){
+
+    private void counterPowerUps(){
+        Debug.Log(Time.time);
+        if (Time.time > this._timerTS){
             this._tripleShooting=false;
         }
+        if (Time.time > this._timerSp){
+            this._speed=false;
+        }
     }
 
-    private void selectShot(){
+    private void selectPowerUps(){
         if (_tripleShooting == true){
             tripleShootingEvent?.Invoke();
         }
         else{
             normalShootingEvent?.Invoke();
         }
-    }
 
-    // IEnumerator playerPowerUpTimer(){
-    //     yield return new WaitForSeconds(_actualPUTimer);
-    //     _tripleShooting = false;
-    // }
+        if(_speed ==  true){
+            moreSpeed?.Invoke();
+        }
+        else{
+            normalSpeed?.Invoke();
+        }
+    }
+    private void OnTriggerEnter(Collider other) {
+        if (other.tag=="PowerUps"){
+            PowerUp PU = other.GetComponent<PowerUp>();
+            
+            if (PU){
+                int type = PU.GetType();
+                if (type == 1){
+                    changeTripleShoot();
+                }
+                else if (type == 2){
+                    changeSpeed();
+                }
+            }
+        }
+    }
 }

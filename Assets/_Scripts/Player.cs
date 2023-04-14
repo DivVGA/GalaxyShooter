@@ -56,4 +56,11 @@ public class Player : MonoBehaviour
             this.transform.position = new Vector3(this.transform.position.x, 4.399f * direction, 0) ; 
         }
     }
+
+    public void changeSpeed(){
+        this._speed=20.0f;
+    }
+    public void normalSpeed(){
+        this._speed=10.0f;
+    }
 }
