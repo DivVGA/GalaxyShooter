@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyController : MonoBehaviour
+public class BossBehaviour : MonoBehaviour
 {
     [SerializeField]
-    private UnityEvent<Vector2> enemyMoving;
+    private UnityEvent<Vector2> bossMoving;
     private float xDirection = 1;
     // Start is called before the first frame update
     void Start()
@@ -28,6 +28,6 @@ public class EnemyController : MonoBehaviour
             xDirection = 1;
         }
 
-        enemyMoving?.Invoke(new Vector2(xDirection,0));
+        bossMoving?.Invoke(new Vector2(xDirection,0));
     }
 }

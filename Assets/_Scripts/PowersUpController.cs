@@ -25,6 +25,10 @@ public class PowersUpController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        powerUpInstantiate();
+    }
+
+    private void powerUpInstantiate(){
         int numPowersUps = _powerUpsList.Count;
         if (Time.time > _nextPowerUp){
             _nextPowerUp = Time.time + Random.Range(1.0f,_powerUpRate);

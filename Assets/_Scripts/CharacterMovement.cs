@@ -34,25 +34,47 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    public void Movement(Vector2 mov){
+    public void movement(Vector2 mov){
         //Movimiento horizontal
-        float horizontalMove = mov.x;
-        if (InRange(this.transform.position.x, -8.4, 8.4)){
-            this.transform.Translate(new Vector3(horizontalMove, 0, 0) * _speed * Time.deltaTime);
-        }
-        else{
-            int direction = DirectionValidator(this.transform.position.x);
-            this.transform.position = new Vector3(8.399f*direction, this.transform.position.y,0) ; 
-        }
+        if (this.tag =="Player"){
+            float horizontalMove = mov.x;
+            if (InRange(this.transform.position.x, -8.4, 8.4)){
+                this.transform.Translate(new Vector3(horizontalMove, 0, 0) * _speed * Time.deltaTime);
+            }
+            else{
+                int direction = DirectionValidator(this.transform.position.x);
+                this.transform.position = new Vector3(8.399f*direction, this.transform.position.y,0) ; 
+            }
 
-        // Movimineto vertical
-        float verticalMove = mov.y; 
-        if (InRange(this.transform.position.y, -4.4, 4.4)){
-            this.transform.Translate(new Vector3(0, verticalMove, 0) * _speed * Time.deltaTime);
+            // Movimineto vertical
+            float verticalMove = mov.y; 
+            if (InRange(this.transform.position.y, -4.4, 4.4)){
+                this.transform.Translate(new Vector3(0, verticalMove, 0) * _speed * Time.deltaTime);
+            }
+            else{
+                int direction = DirectionValidator(this.transform.position.y);
+                this.transform.position = new Vector3(this.transform.position.x, 4.399f * direction, 0) ; 
+            }
         }
         else{
-            int direction = DirectionValidator(this.transform.position.y);
-            this.transform.position = new Vector3(this.transform.position.x, 4.399f * direction, 0) ; 
+            float horizontalMove = mov.x;
+            float verticalMove = mov.y; 
+            this.transform.Translate(new Vector3(horizontalMove, verticalMove, 0) * _speed * Time.deltaTime);
+            // if (InRange(this.transform.position.x, -8.4, 8.4)){
+            // }
+            // else{
+            //     int direction = DirectionValidator(this.transform.position.x);
+            //     this.transform.position = new Vector3(8.399f*direction, this.transform.position.y,0) ; 
+            // }
+
+            // // Movimineto vertical
+            // if (InRange(this.transform.position.y, -4.4, 4.4)){
+            //     this.transform.Translate(new Vector3(0, verticalMove, 0) * _speed * Time.deltaTime);
+            // }
+            // else{
+            //     int direction = DirectionValidator(this.transform.position.y);
+            //     this.transform.position = new Vector3(this.transform.position.x, 4.399f * direction, 0) ; 
+            // }
         }
     }
 
