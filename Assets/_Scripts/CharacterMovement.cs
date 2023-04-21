@@ -8,16 +8,6 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private float _speed;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {   //Movimiento
-    }
-
     private bool InRange(double value, double min, double max){
         if (value >= min && value <= max){
             return true;
@@ -60,21 +50,6 @@ public class CharacterMovement : MonoBehaviour
             float horizontalMove = mov.x;
             float verticalMove = mov.y; 
             this.transform.Translate(new Vector3(horizontalMove, verticalMove, 0) * _speed * Time.deltaTime);
-            // if (InRange(this.transform.position.x, -8.4, 8.4)){
-            // }
-            // else{
-            //     int direction = DirectionValidator(this.transform.position.x);
-            //     this.transform.position = new Vector3(8.399f*direction, this.transform.position.y,0) ; 
-            // }
-
-            // // Movimineto vertical
-            // if (InRange(this.transform.position.y, -4.4, 4.4)){
-            //     this.transform.Translate(new Vector3(0, verticalMove, 0) * _speed * Time.deltaTime);
-            // }
-            // else{
-            //     int direction = DirectionValidator(this.transform.position.y);
-            //     this.transform.position = new Vector3(this.transform.position.x, 4.399f * direction, 0) ; 
-            // }
         }
     }
 

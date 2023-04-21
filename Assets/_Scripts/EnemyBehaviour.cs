@@ -7,6 +7,9 @@ public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField]
     private UnityEvent<Vector2> enemyMoving;
+    [SerializeField]
+    private GameObject enemyDeathAnimator;
+
     private float yDirection = -1;
     [SerializeField]
     private float _enemylife;
@@ -29,6 +32,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void isOut(){
         if (this._enemylife <= 0){
+            Instantiate(enemyDeathAnimator,this.transform.position,Quaternion.identity);
             Destroy(this.gameObject);
         }
         else if (this.transform.position.y < -6.0f){
