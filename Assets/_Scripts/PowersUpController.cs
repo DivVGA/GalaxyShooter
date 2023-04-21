@@ -12,7 +12,7 @@ public class PowersUpController : MonoBehaviour
     private GameObject _shield;
     private List<GameObject> _powerUpsList = new List<GameObject>();
     private float _powerUpRate = 15.0f;
-    private float _nextPowerUp = 5.0f;
+    private int _numPowerUps;
 
     // Start is called before the first frame update
     void Start()
@@ -20,21 +20,16 @@ public class PowersUpController : MonoBehaviour
         _powerUpsList.Add(_tripleShot);
         _powerUpsList.Add(_moreSpeed);
         _powerUpsList.Add(_shield);
+        this._numPowerUps = _powerUpsList.Count;
+        StartCoroutine(SpawnPoweUP());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator SpawnPoweUP()
     {
-        powerUpInstantiate();
-    }
-
-    private void powerUpInstantiate(){
-        int numPowersUps = _powerUpsList.Count;
-        if (Time.time > _nextPowerUp){
-            _nextPowerUp = Time.time + Random.Range(1.0f,_powerUpRate);
+        while(true){
             float _xPos = Random.Range(-8.25f,8.25f);
-            int numPowerUps = _powerUpsList.Count;
-            Instantiate(_powerUpsList[(int)Random.Range(0,numPowersUps)],new Vector3(_xPos, 5.60f, 0), Quaternion.identity) ;
+            Instantiate(_powerUpsList[(int)Random.Range(0,_numPowerUps)],new Vector3(_xPos, 5.60f, 0), Quaternion.identity) ;
+            yield return new WaitForSeconds(Random.Range(1.0f,_powerUpRate));
         }
     }
 }
