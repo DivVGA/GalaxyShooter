@@ -40,7 +40,11 @@ public class PlayerPowersUp : MonoBehaviour
 
     public UnityEvent shield;
     public UnityEvent noShield;
-
+    public UnityEvent<float> sendTimeShield;
+    
+    private void Start() {
+        sendTimeShield?.Invoke(0);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -73,6 +77,9 @@ public class PlayerPowersUp : MonoBehaviour
         }
         if (Time.time > this._timerSh){
             this._shield=false;
+        }
+        else{
+            sendTimeShield?.Invoke(this._timerSh - Time.time);
         }
     }
 

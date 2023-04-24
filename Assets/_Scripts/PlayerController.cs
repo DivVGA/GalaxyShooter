@@ -8,10 +8,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private UnityEvent<Vector2> playerMoving;
     [SerializeField]
+    private UnityEvent<int> changeLive;
+    [SerializeField]
     private GameObject playerDeathAnimator;
     [SerializeField]
     private GameObject shieldAnimator;
-
     [SerializeField]
     private float _life;
     private bool doIHaveShield = false;
@@ -29,18 +30,6 @@ public class PlayerController : MonoBehaviour
         IamAlive();
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.transform.tag == "Enemy"){
-            if (!this.doIHaveShield) {
-                this._life-=15;
-            }
-        }
-        else if (other.transform.tag == "EnemyBullet"){
-            if (!this.doIHaveShield) {
-                this._life-=20;
-            }
-        }
-    }
 
     private void IamAlive(){
         if (this._life<=0){
@@ -57,4 +46,21 @@ public class PlayerController : MonoBehaviour
         this.doIHaveShield = false;
         shieldAnimator.SetActive(false);
     }
+    private void OnTriggerEnter(Collider other) {
+        if (other.transform.tag == "Enemy"){
+            if (!this.doIHaveShield) {
+                this._life-=15;
+                changeLive?.Invoke(15);
+            }
+        }
+        else if (other.transform.tag == "EnemyBullet"){
+            if (!this.doIHaveShield) {
+                this._life-=20;
+                changeLive?.Invoke(20);
+            }
+        }
+    }
+
+
+
 }

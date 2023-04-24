@@ -13,6 +13,7 @@ public class EnemyBehaviour : MonoBehaviour
     private float yDirection = -1;
     [SerializeField]
     private float _enemylife;
+    public UnityEvent sendScore;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void isOut(){
         if (this._enemylife <= 0){
             Instantiate(enemyDeathAnimator,this.transform.position,Quaternion.identity);
+            sendScore?.Invoke();
             Destroy(this.gameObject);
         }
         else if (this.transform.position.y < -6.0f){
