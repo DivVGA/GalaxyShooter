@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerController : MonoBehaviour
+namespace Galxy{
+    public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private UnityEvent<Vector2> playerMoving;
     [SerializeField]
     private UnityEvent<int> changeLive;
+    [SerializeField]
+    private UnityEvent<int> resetLife;
+    [SerializeField]
+    private UnityEvent _playDeadA;
+    [SerializeField]
+    private UnityEvent<int,Vector3> _sendLife;
     [SerializeField]
     private GameObject playerDeathAnimator;
     [SerializeField]
@@ -27,14 +34,28 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         playerMoving?.Invoke(new Vector2(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical")));
+        takeDamage();
         IamAlive();
     }
 
+    private void OnEnable() {
+        shieldAnimator.SetActive(false);
+        doIHaveShield = false;
+        _life=100;
+        resetLife?.Invoke((int)_life);
+    }
+
+    private void OnDisable() {
+        this.transform.position = new Vector3(0.0f,0.0f,0.0f);
+        
+    }
 
     private void IamAlive(){
         if (this._life<=0){
             Instantiate(playerDeathAnimator,this.transform.position,Quaternion.identity);
-            Destroy(this.gameObject);
+            _playDeadA?.Invoke();
+            this.gameObject.SetActive(false);
+            // Destroy(this.gameObject);
         }
     }
 
@@ -61,6 +82,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
+    private void takeDamage(){
+        _sendLife?.Invoke((int)_life,this.transform.position);
+    }
+}
 }

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyBehaviour : MonoBehaviour
+namespace Galxy{
+    public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField]
     private UnityEvent<Vector2> enemyMoving;
@@ -13,13 +14,13 @@ public class EnemyBehaviour : MonoBehaviour
     private float yDirection = -1;
     [SerializeField]
     private float _enemylife;
-    public UnityEvent sendScore;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
+    public delegate void changeScore();
+    public static event changeScore enemyDead;
+
+    [SerializeField]
+    private AudioClip _clip;
+    // Start is called before the first frame update
     // Update is called once per frame
     void Update()
     {
@@ -34,8 +35,10 @@ public class EnemyBehaviour : MonoBehaviour
     private void isOut(){
         if (this._enemylife <= 0){
             Instantiate(enemyDeathAnimator,this.transform.position,Quaternion.identity);
-            sendScore?.Invoke();
+            enemyDead?.Invoke();
+            AudioSource.PlayClipAtPoint(_clip,Camera.main.transform.position, 0.5f);
             Destroy(this.gameObject);
+
         }
         else if (this.transform.position.y < -6.0f){
             Destroy(this.gameObject);
@@ -50,4 +53,5 @@ public class EnemyBehaviour : MonoBehaviour
             this._enemylife-=50;
         }
     }
+}
 }

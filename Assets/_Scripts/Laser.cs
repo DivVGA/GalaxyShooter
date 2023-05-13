@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laser : MonoBehaviour
+namespace Galxy{
+    public class Laser : MonoBehaviour
 {
     [SerializeField]
     private float force;
@@ -30,4 +31,5 @@ public class Laser : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+}
 }

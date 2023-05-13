@@ -3,40 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PowerUp : MonoBehaviour
-{
-    [SerializeField]
-    private float force;
-    [SerializeField]
-    private int type;
-    private Rigidbody _rigibody;
-    // Start is called before the first frame update
-
-    void Start()
+namespace Galxy{
+    public class PowerUp : MonoBehaviour
     {
-        _rigibody = this.transform.GetComponent<Rigidbody>();
-        _rigibody.AddForce(Vector3.down*force);
-    }
+        [SerializeField]
+        private float force;
+        [SerializeField]
+        private int type;
+        private Rigidbody _rigibody;
+        [SerializeField]
+        private AudioClip _powerUPClip;
+        // Start is called before the first frame update
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (this.transform.position.y < -5.6f){
-            Destroyer();
+        void Start()
+        {
+            _rigibody = this.transform.GetComponent<Rigidbody>();
+            _rigibody.AddForce(Vector3.down*force);
         }
-    }
 
-    public void Destroyer(){
-        Destroy(this.gameObject);
-    }
-
-    private void OnTriggerEnter(Collider other) {
-        if (other.tag=="Player"){
-            Destroyer();
+        // Update is called once per frame
+        void FixedUpdate()
+        {
+            if (this.transform.position.y < -5.6f){
+                Destroyer();
+            }
         }
-    }
 
-    public new int GetType(){
-        return this.type;
+        public void Destroyer(){
+            Destroy(this.gameObject);
+        }
+
+        private void OnTriggerEnter(Collider other) {
+            if (other.tag=="Player"){
+                AudioSource.PlayClipAtPoint(_powerUPClip,Camera.main.transform.position,0.8f);
+                Destroyer();
+            }
+        }
+
+        public new int GetType(){
+            return this.type;
+        }
     }
 }

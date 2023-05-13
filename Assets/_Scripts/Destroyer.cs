@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destroyer : MonoBehaviour
-{
-    // Start is called before the first frame update
-    [SerializeField]
-    private int timeToDestruction;
-    void Start()
+namespace Galxy{
+    public class Destroyer : MonoBehaviour
     {
-        StartCoroutine(DestroyMe());
-    }
+        // Start is called before the first frame update
+        [SerializeField]
+        private int timeToDestruction;
+        void Start()
+        {
+            StartCoroutine(DestroyMe());
+        }
 
-    IEnumerator DestroyMe()
-    {
-        yield return new WaitForSeconds(this.timeToDestruction);
-        Destroy(this.gameObject);
+        IEnumerator DestroyMe()
+        {
+            yield return new WaitForSeconds(this.timeToDestruction);
+            Destroy(this.gameObject);
+        }
+
     }
 
 }

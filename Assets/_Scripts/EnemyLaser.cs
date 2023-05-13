@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyLaser : MonoBehaviour
+namespace Galxy{
+    public class EnemyLaser : MonoBehaviour
 {
     [SerializeField]
     private float force;
@@ -51,4 +52,5 @@ public class EnemyLaser : MonoBehaviour
         _rigibody = this.transform.GetComponent<Rigidbody>();
         _rigibody.AddForce((-1*Vector3.up+Vector3.right)*force);
     }
+}
 }

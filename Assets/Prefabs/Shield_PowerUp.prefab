@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2182023355070086113}
   - component: {fileID: 8033985688203730348}
   - component: {fileID: -570896014016596906}
+  - component: {fileID: 7032528256657237415}
   m_Layer: 0
   m_Name: Shield_PowerUp
   m_TagString: PowerUps
@@ -101,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 200
   type: 3
+  _powerUPClip: {fileID: 8300000, guid: 4936a8e7a78b852468d8e2f76c258815, type: 3}
 --- !u!54 &8033985688203730348
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -130,3 +132,23 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2.5599997
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &7032528256657237415
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995371521563974445}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 04dd92eb607553443a82ecea1dc99987, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

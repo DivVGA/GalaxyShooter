@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerPowersUp : MonoBehaviour
+namespace Galxy{
+    public class PlayerPowersUp : MonoBehaviour
 {
     // Variable que indica si el disparo triple esta activo
     [SerializeField]
@@ -123,4 +124,5 @@ public class PlayerPowersUp : MonoBehaviour
             }
         }
     }
+}
 }
