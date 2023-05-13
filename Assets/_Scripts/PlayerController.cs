@@ -33,7 +33,14 @@ namespace Galxy{
     // Update is called once per frame
     void Update()
     {
-        playerMoving?.Invoke(new Vector2(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical")));
+        #if UNITY_STANDALONE_WIN
+            playerMoving?.Invoke(new Vector2(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical")));
+        #elif UNITY_ANDROID
+            if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved){
+                Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+                playerMoving?.Invoke(touchDeltaPosition);
+            }
+        #endif
         takeDamage();
         IamAlive();
     }
